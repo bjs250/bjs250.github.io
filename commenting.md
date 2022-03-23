@@ -1,3 +1,3 @@
 layout: page
-title: "Technical design - a commenting service"
+title: "commenting"
 permalink: /test/
