@@ -1,3 +1,7 @@
 theme: jekyll-theme-cayman
 title: Brian Schendt's homepage
 description: Bookmark this to keep an eye on my project updates!
+
+layout: page
+title: "commenting"
+permalink: /test/
