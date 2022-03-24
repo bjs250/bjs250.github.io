@@ -38,4 +38,17 @@ The idea here is that commenting will:
 
 ## Functional requirements
 
+For this feature to be a success, these were the so-called "table stakes":
+- Users should be able to comment and reply
+- Users should be able to tag other users within their org
+- If a user is tagged in a comment tree, they should be notified by push or email
+- If comments are created in a comment tree in which the user is a participant, they should be notified by push or email
+- A user should be able to control their notifications (e.g. silence them)
+- A user's notifications should be persisted somewhere (so that they have a way of navigating back to the comment tree)
+
+## Functional Constraints
+
+
+
+
 
