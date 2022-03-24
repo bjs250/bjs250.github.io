@@ -22,8 +22,14 @@ During the interaction between the chatbot and the site visitor, Drift collects,
 
 ## Job to be done
 
+One of Drift's main goals is to expand within client companies it already has a business relationship with. To do this, it needs to encourage more users within a client company's sales team to use the website analytics platform and get them using the platform habitually. One hypothesis for doing this was to add a commenting feature to resources within the analytics platform:
 
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/159894437-df93e765-2e0b-429c-bfa4-62cc6521cc65.jpg" width="500">
+</p>
+<p align="center">
+  Tagging another user to look at website activity
+</p>
 
 
 ## Functional requirements
