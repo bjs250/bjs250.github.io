@@ -31,6 +31,10 @@ One of Drift's main goals is to expand within client companies it already has a 
   Tagging another user to look at website activity
 </p>
 
+The idea here is that commenting will:
+- Encourage users to get their coworkers into the analytics platform (expansion)
+- Demonstrate value of the analytics platform to coworkers
+- Get users back into the app and using the analytics platform
 
 ## Functional requirements
 
