@@ -79,5 +79,5 @@ The role model here is LinkedIn, as opposed to something like Reddit. There are 
 ### System architecture
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/27317800/160022667-4024acdd-f581-4272-973e-30543633e806.jpg" width="500">
+  <img src="https://user-images.githubusercontent.com/27317800/160022667-4024acdd-f581-4272-973e-30543633e806.jpg" width="1000">
 </p>
