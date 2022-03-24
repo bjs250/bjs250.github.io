@@ -1,3 +1,5 @@
+# Designing a domain-agnostic commenting microservice
+
 ## Background
 
 Drift is a B2B "conversational marketing and sales platform". It's main offering is to install a virtual assistant on a client company's marketing website ("a chatbot") to interact with site visitors, targeting two main scenarios: site visitors that want to initiate a business deal with the client company, and site visitors that require technical assistance from the client company:
@@ -24,6 +26,6 @@ During the interaction between the chatbot and the site visitor, Drift collects,
 
 
 
-## Functional Requirements
+## Functional requirements
 
 
