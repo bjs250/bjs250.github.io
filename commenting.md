@@ -15,10 +15,6 @@ During the interaction between the chatbot and the end user, Drift collects, agg
 An example of logging website activity through a chatbot
 
 
-
-![Image 2022-03-24 at 6 56 52 AM](https://user-images.githubusercontent.com/27317800/159859841-20be4ee3-b789-4c4a-9555-eb4461320edb.jpg)
-
-
 # Functional Requirements
 
 
