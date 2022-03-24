@@ -72,11 +72,26 @@ The role model here is LinkedIn, as opposed to something like Reddit. There are 
 
 ### Access patterns
 
+- The entire comment tree for a resource needs to be retrieved and rendered by a user's browser, assuming they have access to that resource
+- A user needs to be able to edit their own comment
+- A user needs to be able to delete their own comment
+- A user should be able to create a top level comment, a reply branch on the comment tree, or a reply in a branch
+
+These requirements describe simple lookup operations, which suggest a NoSQL database like DynamoDB would be a good fit
+
 ### A comment tree model
 
 ### A comment event model
 
 ### System architecture
+
+A topic and queue system provides the foundation for what we want here for a couple of reasons.
+
+First, AWS queues have inherent retry logic. This isn't ideal for push notification processing (which we want to be realtime) but is important for the notification center, which needs to as accurate a record of events as possible.
+
+Secondly, why broadcast the comment event to three separate queues? It's important that we keep the failure modes for downstream processing independent. The queue's inherent retry logic can be a double edged sword. For example, if something went wrong with push notification processing and processing was *not* independent, we could end up repeatedly spamming email delivery during retry attempts, which is terrible for obvious reasons. 
+
+Thirdly, this allows us to get separate performance metrics for each process, as it's possible that each operation takes a different amount of time. Because we don't want to spam the email channel, we should buffer and batch updates together for some amount of time before dispatching the notification.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/27317800/160022667-4024acdd-f581-4272-973e-30543633e806.jpg" width="1000">
