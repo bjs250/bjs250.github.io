@@ -81,7 +81,11 @@ These requirements describe simple lookup operations, which suggest a NoSQL data
 
 ### A comment tree model
 
+WIP
+
 ### A comment event model
+
+WIP
 
 ### System architecture
 
