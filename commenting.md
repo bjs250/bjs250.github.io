@@ -3,7 +3,7 @@
 Drift is a B2B company specializing in conversational marketing. It's main offering is to install a virtual assistant on a customer company's marketing website ("a chatbot") to interact with site visitors, targeting two personas: end users that want to initiate a business deal with the company, and end users that require technical assistance.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/27317800/159860362-43b4ecc7-c0c1-43b2-acb2-725e81a9aa58.jpg" alt="example chatbot"/>
+  <img src="https://user-images.githubusercontent.com/27317800/159860362-43b4ecc7-c0c1-43b2-acb2-725e81a9aa58.jpg" alt="example chatbot" style="width:300px;/>
 </p>
 An example Drift chatbot
 
