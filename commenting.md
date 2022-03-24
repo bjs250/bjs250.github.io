@@ -45,10 +45,31 @@ For this feature to be a success, these were the so-called "table stakes":
 - If comments are created in a comment tree in which the user is a participant, they should be notified by push or email
 - A user should be able to control their notifications (e.g. silence them)
 - A user's notifications should be persisted somewhere (so that they have a way of navigating back to the comment tree)
+- A user should be able to edit or delete their own comments
 
-## Functional Constraints
+## Technical requirements
 
+- This pattern should be portable to almost any entity in the front end
+- Notifications need to be persisted reliably, or user trust will be eroded
+- Notifications need to be very quick, as users often want to act on the website activity ASAP
 
+## Functional constraints
+
+The role model here is LinkedIn, as opposed to something like Reddit. There are a number of UX simplifications we can make under that assumption
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/159896472-4cd4c8f7-76df-4717-8a17-4e68ce7f2289.jpg" width="500">
+</p>
+<p align="center">
+  Example LinkedIn comment tree
+</p>
+
+- The max depth of a comment tree is 1
+- The total length of any given comment tree will be relatively short 
+- Users want to be notified about any activity in the comment tree (this one in particular is key)
+
+## Technical design
+### A comment tree model
 
 
 
