@@ -42,11 +42,11 @@ Now, there were two main channels we were using for notification delivery at Dri
 
 ## Job to be done
 
-Notifications are an incredibly important and useful tool to get users back into the product at the right time. The problem is...well, there are too many problems to count! Dispatching notifications is a lot like tossing bottles into the ocean. We were sending them to users, but didn't know if they were actually using them or something had gone wrong along the way.
+Notifications are an incredibly important and useful tool for getting users back into the product at the right time. The problem was...well, there were too many problems to count! Dispatching notifications was a lot like tossing bottles into the ocean. We were sending them to users, but didn't know if they were making it to them. We also didn't know if users were actually using them.
 
 Then we started to get triage. A lot of triage...
 
-Customers would constantly tell us notitifications stopped working, or were delayed, or they got them on their phone but not in their browser (or vice versa)
+Customers would constantly tell us notitifications stopped working, or were delayed, or they got them on their phone but not in their browser (or vice versa). At the end of the day:
 
 1. Engineers needed a way to measure the reliability of notification delivery and performance latency
 
@@ -54,7 +54,7 @@ Customers would constantly tell us notitifications stopped working, or were dela
 
 3. Product managers needed a way to measure the engagement rate with notifications
 
-So this is why we built a centralized notification audit log
+So this is why we built a centralized notification audit log. This would be an internal tool to assess the health of notifications in aggregate, and the outcomes of notifications sent to individual users.
 
 ## How notifications work
 
@@ -89,9 +89,15 @@ As an customer support specialist:
 
 ## Technical requirements
 
+Notifications are one of the highest cardinality objects at Drift. Most services that interact with users end up dispatching them, and the total throughput of all notifications going through Drift within a week is in the millions. Since this is an internal tool, we can make some performance compromises that we wouldn't typically make with customers. Likewise, this isn't necessarily an alerting system
 
-## Functional constraints
+- We must handle many more write operations than read operations
+- We need to store a large number of records cheaply
+- We want to be able to retrieve an individual user's notification audit trail quickly
+- We don't need instant access to notification information in aggregate 
+- We don't want audit logging to add any overhead to notification delivery
 
+So there is a bit of an inherent tradeoff here. DynamoDB is an ideal datastore for cost of storage (and an expiry policy can be set) and also easy lookup of individual information, but poor or difficult to use for querying in aggregate. Autoscaling will let us deal with heavy write activity. It's for these reasons we'll choose it over a relational database, but there are significant cons here.
 
 ## Technical design
 
