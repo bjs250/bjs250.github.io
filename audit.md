@@ -46,15 +46,20 @@ Notifications are an incredibly important and useful tool to get users back into
 
 Then we started to get triage. A lot of triage...
 
-Customers would constantly tell us notitifications stopped working, or were delayed, or they got them on their phone but not in their browswer (or vice versa)
+Customers would constantly tell us notitifications stopped working, or were delayed, or they got them on their phone but not in their browser (or vice versa)
 
-Engineers needed a way to measure the reliability of notification delivery and performance latency
+1. Engineers needed a way to measure the reliability of notification delivery and performance latency
 
-Customer support needed a way to troubleshoot notifications for users
+2. Customer support needed a way to troubleshoot notifications for users
 
-Product managers needed a way to measure the engagement rate with notifications
+3. Product managers needed a way to measure the engagement rate with notifications
 
-So this is why we build a centralized notification audit log
+So this is why we built a centralized notification audit log
+
+## How notifications work
+
+Browswer notifications are built on top of the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+
 
 ## Functional requirements
 
