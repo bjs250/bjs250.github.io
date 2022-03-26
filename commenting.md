@@ -81,7 +81,34 @@ These requirements describe simple lookup operations, which suggest a NoSQL data
 
 ### A comment tree model
 
-WIP
+Let's call any component throughout the Drift front end that can be commented on a "resource". In the example above, this happens to be a website activity card, but other product teams might want to implement commenting within their product domains. For this, we need to keep the comment tree model domain-agnostic.
+
+As mentioned above, the most common access pattern will be to retrieve an entire comment tree pertaining to resource. For this reason, we want those records to be clustered together in the datastore we've chosen, DynamoDB. This can be done by assigning all the comments to the same partition key, which can just be the id of the resource that users are commenting on. The product team responsible for that resource type can use whatever kind of resource id they want!
+
+Composite primary key:
+- Partition key: resourceId
+- Sort key: commentId
+
+Great! But there's a problem. When we do a lookup on (resourceId), DynamoDB will just return our service a flat list of records. How can we transform that list into a tree? We can't just sort the list by timestamp due to replies in branches, as seen below:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160234954-2598da8e-86d1-4a83-883b-2810bc819de7.jpg" width="1000">
+</p>
+<p align="center">
+  An example tree among three users
+</p>
+
+This can be solved by introducing 2 fields onto the model:
+- Comment parent id
+- Creation timestamp
+
+To explain, we know that if we just had a single list of top-level comments, they would be well-ordered by timestamp. This is the kind of structure we  we have for any comment branch, given that the max depth of the comment tree is 1.
+
+So top-level comments can be well-ordered by having a comment parent id of null combined with timestamp, and the branch-level comments can be well-ordered by having a comment parent id of their relative root combined with timestamp.
+
+To complete our model, we just need 2 additional fields:
+- user id, for the comment author
+- content
 
 ### A comment event model
 
@@ -100,3 +127,5 @@ Thirdly, this allows us to get separate performance metrics for each process, as
 <p align="center">
   <img src="https://user-images.githubusercontent.com/27317800/160022667-4024acdd-f581-4272-973e-30543633e806.jpg" width="1000">
 </p>
+
+Alright, but what about making this system domain agnostic? 
