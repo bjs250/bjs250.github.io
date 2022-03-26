@@ -20,11 +20,11 @@ While chatbots are capable of inititiating basic conversation with a visitor and
   The Drift.com inbox
 </p>
 
+But life as a sales rep is busy, and no one is going to sit in front of the inbox all day waiting for replies. So how does one get back to a chat when a reply is warranted? The answer is notifications: when a site visitor replies to you in chat, you're sent a push notification which you can follow back to that conversation within the inbox.
 
-There were two main channels we were using for notification delivery at Drift:
+Now, there were two main channels we were using for notification delivery at Drift:
 - Browser
 - Mobile
-
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/27317800/160237111-277a1398-7b8d-44b6-82c8-d6e17ebc515f.jpg" width="300">
@@ -32,7 +32,6 @@ There were two main channels we were using for notification delivery at Drift:
 <p align="center">
   A browser notification
 </p>
-
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/27317800/160237117-13076522-fd5a-436d-8a1a-925440e118c1.jpg" width="300">
@@ -43,6 +42,19 @@ There were two main channels we were using for notification delivery at Drift:
 
 ## Job to be done
 
+Notifications are an incredibly important and useful tool to get users back into the product at the right time. The problem is...well, there are too many problems to count! Dispatching notifications is a lot like tossing bottles into the ocean. We were sending them to users, but didn't know if they were actually using them or something had gone wrong along the way.
+
+Then we started to get triage. A lot of triage...
+
+Customers would constantly tell us notitifications stopped working, or were delayed, or they got them on their phone but not in their browswer (or vice versa)
+
+Engineers needed a way to measure the reliability of notification delivery and performance latency
+
+Customer support needed a way to troubleshoot notifications for users
+
+Product managers needed a way to measure the engagement rate with notifications
+
+So this is why we build a centralized notification audit log
 
 ## Functional requirements
 
