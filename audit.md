@@ -101,10 +101,15 @@ So there is a bit of an inherent tradeoff here. DynamoDB is an ideal datastore f
 
 ## Technical design
 
-### Access patterns
+The first thing we need to do is move from a world where each microservice manages its own notifications...
 
-### A comment tree model
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160254696-02eeae80-7f32-443a-a5a1-0f74f8a3ffef.jpg" width="500">
+</p>
 
-### A comment event model
+To a world where all notification requests go to one place before being sent outbound to users. This new service will be manage interactions to the audit datastore in DynamoDB
 
-### System architecture
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160254720-2ce950ee-f138-4229-970e-174649fdac39.jpg" width="500">
+</p>
+
