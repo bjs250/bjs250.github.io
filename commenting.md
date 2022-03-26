@@ -139,5 +139,3 @@ Thirdly, this allows us to get separate performance metrics for each process, as
 <p align="center">
   <img src="https://user-images.githubusercontent.com/27317800/160022667-4024acdd-f581-4272-973e-30543633e806.jpg" width="1000">
 </p>
-
-Alright, but what about making this system domain agnostic? 
