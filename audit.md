@@ -2,6 +2,23 @@
 
 ## Background
 
+Drift is a B2B "conversational marketing and sales platform". It's main offering is to install a virtual assistant on a client company's marketing website ("a chatbot") to interact with site visitors, targeting two main scenarios: site visitors that want to initiate a business deal with the client company, and site visitors that require technical assistance from the client company:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/159860362-43b4ecc7-c0c1-43b2-acb2-725e81a9aa58.jpg" width="300">
+</p>
+<p align="center">
+  An example of a Drift chatbot on the client company, Peloton
+</p>
+
+While chatbots are capable of inititiating basic conversation with a visitor and answering primitive questions, at some point it often becomes important for a real human being to be able to jump into chat with a visitor. In the Drift app, we have an inbox that sales reps can visit, which contains all the conversations that are currently happening between site visitors and chatbot instances on Drift.com
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160237279-1491e85b-34fb-4922-af80-23cbfd856ae4.jpg" width="300">
+</p>
+<p align="center">
+  The Drift.com inbox
+</p>
 
 
 There were two main channels we were using for notification delivery at Drift:
