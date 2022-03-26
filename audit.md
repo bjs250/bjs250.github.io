@@ -138,9 +138,18 @@ Now, we probably also want timestamps on these individual events as well. The cl
 Remember that one of the reasons we want to do this is to have some observability into the service worker. We can now do this by exposing an endpoint within the notification service that will upsert audit log events onto audit trails records in the DynamoDB table. Consider the "happy path" below:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/27317800/160255741-823588aa-ad10-4df2-ac19-89d88d80275b.jpg" width="700">
+  <img src="https://user-images.githubusercontent.com/27317800/160255741-823588aa-ad10-4df2-ac19-89d88d80275b.jpg" width="600">
 </p>
 <p align="center">
   The service worker can write receipts when certain things happen
 </p>
 
+Now that the notification service is receiving receipts, it can also use the absence of receipts after a certain time to try and help a user. For example, consider the following 2 scenarios where the notification delivery process breaks down:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160255891-75c860f6-fbc3-4d12-8db2-d20e3e6977a6.jpg" width="600">
+</p>
+
+1. Can happen when a user has never registered a service worker with the app.drift.com domain, or can also fail when their notification subscription has expired. Here, since notification-api never got a receipt (after a predetermined timeout), it can try to prompt some other pathway to get the user to renew their subscription (for example, send an email that leads a user back to a setting page).
+
+2. Can happen for a whole host of reasons (actually the most common scenario in triage), usually around when browser or OS updates occur, they will reset permissions to autoblock push notifications. Usually we need customer support to assist the user in checking permissions on their end
