@@ -58,8 +58,16 @@ So this is why we built a centralized notification audit log
 
 ## How notifications work
 
-Browswer notifications are built on top of the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+Browser notifications are built on top of the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API), which is generally a Javascript file responsible for processing notifications. You can register a service worker to a domain (e.g. app.drift.com), and when the user's browser accesses a web page on that domain, it will download and install the service worker snippet. You can then use the [Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API) to control how you consume notifications.
 
+There's some more complications around subscriptions, but I'll omit that for the time being. 
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160240377-e02f7b50-2053-45e2-9d7f-6705634b2053.jpg" width="300">
+</p>
+<p align="center">
+  A simplified version of notifications
+</p>
 
 ## Functional requirements
 
