@@ -132,3 +132,15 @@ For this reason, we prefer representing an audit trail object as a 1:1 relations
 </p>
 
 Now, we probably also want timestamps on these individual events as well. The client that reads and visualizes the audit trail for users will have some non trivial work to do but...well that's why developers get paid. There is no free lunch
+
+### Audit events
+
+Remember that one of the reasons we want to do this is to have some observability into the service worker. We can now do this by exposing an endpoint within the notification service that will upsert audit log events onto audit trails records in the DynamoDB table. Consider the "happy path" below:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160255741-823588aa-ad10-4df2-ac19-89d88d80275b.jpg" width="700">
+</p>
+<p align="center">
+  The service worker can write receipts when certain things happen
+</p>
+
