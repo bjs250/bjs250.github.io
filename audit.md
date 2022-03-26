@@ -75,8 +75,8 @@ As an engineer:
 - I want to know if my service dispatched a notification (or didn't!)
 - I want to know how long it took my service to process the notification-generating event
 - I want to know the duration between the underlying event happening and the user seeing the notification
-- I want to know if the service worker got the dispatched notification (delivery rate)
-- I want to know if the service worker rendered the notification to the user (shown rate)
+- I want to know if the user's browser got the dispatched notification (delivery rate)
+- I want to know if the user's browser rendered the notification (shown rate)
 - I want these metrics in aggregate!
 
 As a product manager:
