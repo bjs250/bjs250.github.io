@@ -101,15 +101,34 @@ So there is a bit of an inherent tradeoff here. DynamoDB is an ideal datastore f
 
 ## Technical design
 
+### A new microservice
+
 The first thing we need to do is move from a world where each microservice manages its own notifications...
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/27317800/160254696-02eeae80-7f32-443a-a5a1-0f74f8a3ffef.jpg" width="500">
 </p>
 
-To a world where all notification requests go to one place before being sent outbound to users. This new service will be manage interactions to the audit datastore in DynamoDB
+To a world where all notification requests go to one place before being sent outbound to users. This new service will be responsible for managing interactions to the audit datastore in DynamoDB
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/27317800/160254720-2ce950ee-f138-4229-970e-174649fdac39.jpg" width="500">
 </p>
 
+### An audit trail model
+
+A second major question is what the audit trail object looks like. We can thing of an audit trail for a notification as a series of events. But this model quickly becomes problematic. Considering the following case:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160255049-e521a478-cc4e-4264-8086-0d1f3135a51d.png" width="500">
+</p>
+
+A single generating event (a message in a conversation involving multiple participants) results in a tenfold increase in events that we care about (ultimately resulting in delivery to 4 channels across 2 users). Given the scale of notitifications, the number of indidividual audit trail events can become unbounded if each of them is a record in a DynamoDB table.
+
+For this reason, we prefer representing an audit trail object as a 1:1 relationship between a generating event and a receiving user. So in this case, 1 generating event would result in 2 audit trail objects (and 2 records in DynamoDB), one for Alice and one for Charlie. We can do this by growing the record columwise arbitrarily:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/27317800/160255278-7c46fbf6-fb06-40a7-9895-1283057ece29.jpg" width="500">
+</p>
+
+Now, we probably also want timestamps on these individual events as well. The client that reads and visualizes the audit trail for users will have some non trivial work to do but...well that's why developers get paid. There is no free lunch
