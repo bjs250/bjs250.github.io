@@ -92,7 +92,7 @@ Composite primary key:
 Great! But there's a problem. When we do a lookup on (resourceId), DynamoDB will just return our service a flat list of records. How can we transform that list into a tree? We can't just sort the list by timestamp due to replies in branches, as seen below:
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/27317800/160234954-2598da8e-86d1-4a83-883b-2810bc819de7.jpg" width="1000">
+  <img src="https://user-images.githubusercontent.com/27317800/160234954-2598da8e-86d1-4a83-883b-2810bc819de7.jpg" width="400">
 </p>
 <p align="center">
   An example tree among three users
@@ -110,9 +110,21 @@ To complete our model, we just need 2 additional fields:
 - user id, for the comment author
 - content
 
+Now, there are still some interesting considerations to make, particularly around comment deletion. What happens to a branch if the top-level comment is deleted, for example? Different product teams may have different requirements around this, so that pattern is defined by the domain.
+
 ### A comment event model
 
-WIP
+When something happens to a comment tree, we want to be able to notify users. At the most fundamental level, three things can happen to any given comment
+- It's been created
+- It's been edited
+- It's been deleted
+
+When that operation occurs, we make the appropriate change to the datastore and broadcast an event that looks like:
+- comment operation (create, edit, delete)
+- pre-operation comment (e.g. null for creation)
+- post-operation comment (e.g. null for deletion)
+
+Taken together, the pre-op and post-op comment constitutes a diff on the comment, and whatever service is consumming the comment event can do whatever it wants with that information. 
 
 ### System architecture
 
