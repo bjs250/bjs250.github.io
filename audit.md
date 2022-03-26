@@ -63,7 +63,7 @@ Browser notifications are built on top of the [Service Worker API](https://devel
 There's some more complications around subscriptions, but I'll omit that for the time being. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/27317800/160240377-e02f7b50-2053-45e2-9d7f-6705634b2053.jpg" width="300">
+  <img src="https://user-images.githubusercontent.com/27317800/160240377-e02f7b50-2053-45e2-9d7f-6705634b2053.jpg" width="800">
 </p>
 <p align="center">
   A simplified version of notifications
@@ -71,6 +71,21 @@ There's some more complications around subscriptions, but I'll omit that for the
 
 ## Functional requirements
 
+As an engineer:
+- I want to know if my service dispatched a notification (or didn't!)
+- I want to know how long it took my service to process the notification-generating event
+- I want to know the duration between the underlying event happening and the user seeing the notification
+- I want to know if the service worker got the dispatched notification (delivery rate)
+- I want to know if the service worker rendered the notification to the user (shown rate)
+- I want these metrics in aggregate!
+
+As a product manager:
+- I want to know if the user interacted with the notification (click rate)
+- I want these metrics in aggregate!
+
+As an customer support specialist:
+- I want to know where in the notification delivery pipeline things broke down for a user
+- I want to know what I can do to put a user back into a good state
 
 ## Technical requirements
 
